@@ -1,24 +1,28 @@
-import { Navbar, Container, Nav } from "solid-bootstrap";
+import { lazy } from "solid-js";
+import { Routes,Route } from 'solid-app-router'
+import { Container } from 'solid-bootstrap'
+import Header from "./components/Header"
+
+const Academycs = lazy(() => import("./pages/Academycs"));
+const Home = lazy(() => import("./pages/Home"));
+const ExpProfessional = lazy(() => import("./pages/ExpProfessional"));
+const WhyMe = lazy(() => import("./pages/WhyMe"));
+const ContactMe = lazy(() => import("./pages/ContactMe"));
 
 function App() {
   return (
-    <Navbar bg="light" variant="light" fixed="top">
-      <Container>
-        <Navbar.Brand href="#">
-          <img alt="" src={"logo.svg"} width="160" height="90" />
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse class="justify-content-end">
-            <Nav.Link href="#" class="rightBorderGray">Home</Nav.Link>
-            <Nav.Link href="#" class="rightBorderGray">Fromación Académica</Nav.Link>
-            <Nav.Link href="#" class="rightBorderGray">Exp. Profesional</Nav.Link>
-            <Nav.Link href="#" class="rightBorderGray">¿Por qué yo?</Nav.Link>
-            <Nav.Link href="#" class="rightBorderGray">Contáctame</Nav.Link>
-            <div id="google_translate_element"></div>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+  <>
+    <Header/>
+    <Container class="pb-5">
+      <Routes>
+        <Route path="/" component={Home} />
+        <Route path="/academycs" component={Academycs}/>
+        <Route path="/professional-exp" component={ExpProfessional}/>
+        <Route path="/why-me" component={WhyMe}/>
+        <Route path="/contact-me" component={ContactMe}/>
+      </Routes>
+    </Container>
+  </>);
 }
 
 export default App;
